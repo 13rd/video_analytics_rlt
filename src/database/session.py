@@ -9,10 +9,5 @@ async_session_maker = async_sessionmaker(
     engine,
     expire_on_commit=False,
     autoflush=False,
-    autocommit=False
+    autocommit=False,
 )
-
-
-async def get_db_session() -> AsyncSession:
-    """Возвращает сессию для использования вне DI (требуется ручное закрытие)."""
-    return async_session_maker
