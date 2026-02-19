@@ -1,8 +1,6 @@
 from datetime import datetime, timedelta, UTC
 import uuid
-from tracemalloc import Snapshot
 from typing import List
-
 from sqlalchemy import Column, String, DateTime, Index, func, UUID, Integer, ForeignKey
 from sqlalchemy.orm import DeclarativeBase, mapped_column, Mapped, relationship
 
@@ -42,8 +40,8 @@ class Videos(Base):
         onupdate=func.now()
 
     )
-    snapshots: Mapped[List["Snapshot"]] = relationship(
-        back_populates="videos",
+    snapshots: Mapped[List["Snapshots"]] = relationship(
+        back_populates="video",
         cascade="all, delete-orphan",
         lazy="select"
 
