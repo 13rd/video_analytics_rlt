@@ -1,10 +1,6 @@
-import os
 import httpx
 import json
 from typing import Optional, Dict, Any
-from envparse import Env
-
-env = Env()
 
 
 class LLMClient:
@@ -13,15 +9,15 @@ class LLMClient:
                  model: str = "x-ai/grok-code-fast-1",
                  site_url: Optional[str] = None,
                  site_name: Optional[str] = None,):
-        self.api_key = api_key or env.str("LLM_API_KEY",)
+        self.api_key = api_key
         if not self.api_key:
             raise ValueError("API ключ не найден. Проверьте .env файл или передайте api_key.")
 
         self.base_url = "https://openrouter.ai/api/v1"
         self.model = model
         self.timeout = 30.0
-        self.site_url = site_url or env.str("SITE_URL", default="http://localhost:8000")
-        self.site_name = site_name or env.str("SITE_NAME", default="Local SQL Bot")
+        self.site_url = site_url
+        self.site_name = site_name
 
     async def generate_sql(self, user_query: str, schema_context: str, system_prompt: str) -> Dict[str, Any]:
         """
