@@ -4,6 +4,11 @@ from settings import LLM_API_KEY, LLM_MODEL, SITE_URL, SITE_NAME
 
 
 async def get_sql_request(user_request):
+    """
+    Response to LLMClient and generate sql request.
+    :param user_request:
+    :return:
+    """
     llm_client = LLMClient(model=LLM_MODEL, api_key=LLM_API_KEY, site_url=SITE_URL, site_name=SITE_NAME)
 
     result = await llm_client.generate_sql(

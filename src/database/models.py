@@ -9,6 +9,9 @@ class Base(DeclarativeBase):
     pass
 
 class Videos(Base):
+    """
+    Base model for videos table
+    """
     __tablename__ = 'videos'
 
     id: Mapped[uuid.UUID] = mapped_column(
@@ -48,6 +51,9 @@ class Videos(Base):
     )
 
 class Snapshots(Base):
+    """
+    Base model for snapshots table
+    """
     __tablename__ = 'snapshots'
 
     id: Mapped[str] = mapped_column(String(32), primary_key=True)

@@ -1,7 +1,13 @@
 
-class RequestException(Exception):
+class LLMRequestException(Exception):
+    """
+    Base class for all exceptions raised by LLMClient.
+    """
     pass
 
 
-class SqlRequestException(RequestException):
+class SqlRequestException(Exception):
+    """
+    Base class for all exceptions raised by SqlRequest.
+    """
     pass

@@ -13,12 +13,22 @@ dp = Dispatcher()
 
 @dp.message(Command("start"))
 async def start(message: types.Message):
+    """
+    Start the bot.
+    :param message:
+    :return:
+    """
     await message.answer(
         text="Введите свой запрос по аналитике видео."
     )
 
 @dp.message()
 async def user_request(message: types.Message):
+    """
+    Get user request and return aggregated data of bot error
+    :param message:
+    :return:
+    """
     if not message.text or message.text.startswith('/'):
         return
 
@@ -26,9 +36,12 @@ async def user_request(message: types.Message):
     print(query_text)
     query: str = query_text
 
-    data = await AnalyticsDAL().select_by_query(query=query)
+    try:
+        data = await AnalyticsDAL().select_by_query(query=query)
 
-    await message.answer(text=str(data))
+        await message.answer(text=str(data))
+    except Exception as e:
+        print(e)
 
 
 async def main():

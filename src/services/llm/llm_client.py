@@ -4,6 +4,9 @@ from typing import Optional, Dict, Any
 
 
 class LLMClient:
+    """
+    Client for request LLM API. Config work with AI aggregator OpenRouter. Use token and model from environment variables.
+    """
     def __init__(self,
                  api_key: Optional[str] = None,
                  model: str = "x-ai/grok-code-fast-1",
@@ -21,7 +24,8 @@ class LLMClient:
 
     async def generate_sql(self, user_query: str, schema_context: str, system_prompt: str) -> Dict[str, Any]:
         """
-        Отправляет запрос к LLM и возвращает парсеный JSON с SQL запросом.
+        Sends a request to LLM and returns parsed JSON with an SQL query.
+        Used system prompt and database schemas from llm_config
         """
         async with httpx.AsyncClient(timeout=self.timeout) as client:
             headers = {

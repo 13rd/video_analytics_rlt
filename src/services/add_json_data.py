@@ -71,7 +71,7 @@ async def import_video_data(video_data: dict):
 async def main():
     print("🚀 Запуск импорта данных...")
 
-    data = await load_json_data('/home/nikita/Python/video_analytics_rlt/videos.json').get("videos")
+    data = await load_json_data('/videos.json').get("videos")
     print(f"📄 Загружено {len(data)} записей из JSON.")
 
     success_count = 0
