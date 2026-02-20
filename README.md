@@ -3,7 +3,7 @@
 [Ссылка на ТЗ](https://docs.google.com/document/d/1XQSuK7jC5k_hrJ3KhkjWsD7BwzUvuP_HwKsbZuhAE8c/edit?tab=t.0)
 
 Пример работы бота:
-![[screenshot.png]]
+![Web Interface](screenshot.png)
 
 ## Инструкция для запуска
 Для запуска проекта локально клонируйте репозиторий:
