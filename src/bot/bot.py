@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 from aiogram import Bot, Dispatcher, types, F
 from aiogram.filters import Command
 from src.services.llm.llm_service import get_sql_request
-from src.database.session import async_session_maker
+from src.database.dal import AnalyticsDAL
 
 bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher()
@@ -24,22 +24,11 @@ async def user_request(message: types.Message):
 
     query_text = await get_sql_request(user_request=message.text)
     print(query_text)
-    query: str = text(query_text)
-    data = None
+    query: str = query_text
 
-    async with async_session_maker() as session:
-        try:
-            print(query)
-            result = await session.execute(query)
-            data = result.scalar_one_or_none()
-            print(data)
-            await session.commit()
-        except Exception as e:
-            await session.rollback()
-            await message.answer(text=str(e))
+    data = AnalyticsDAL().select_by_query(query=query)
+
     await message.answer(text=str(data))
-
-
 
 
 async def main():
