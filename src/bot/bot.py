@@ -26,7 +26,7 @@ async def user_request(message: types.Message):
     print(query_text)
     query: str = query_text
 
-    data = AnalyticsDAL().select_by_query(query=query)
+    data = await AnalyticsDAL().select_by_query(query=query)
 
     await message.answer(text=str(data))
 
