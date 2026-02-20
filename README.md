@@ -14,16 +14,24 @@ git clone https://github.com/13rd/video_analytics_rlt.git
   - Название модели
   - Токен бота
 
-Синхронизируйте библиотки, используя uv:
+Синхронизируйте библиотки и запустите виртуальное окружение, используя uv:
 ```bash
 uv sync
+uv venv
+source .venv/bin/activate
+```
+Либо используя pip:
+```bash
+pip install requirements.txt
+python -m venv venv
+source .venv/bin/activate
 ```
 
 В консоли пропишите:
 ```bash
 docker-compose up -d
 ```
-для создания базы данных.
+Для создания базы данных.
 
 Проведите миграции:
 ```bash
